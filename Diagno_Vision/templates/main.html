@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="Keywords" content="Flask, Machine Learning, Deep Learning, Artificial Intelligence, AI, ML,DL, Web Development">
+    <meta name="description" content="A Machine Learning and Deep Learning based webapp for Multiple Disease Prediction.">
+    <title>Medical Diagnosis</title>
+    <link rel="icon" href="{{ url_for('static', filename='logo.png') }}" type="image/icon">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700" rel="stylesheet">
+    <link rel="canonical" href="https://getbootstrap.com/docs/4.0/examples/sticky-footer/">
+
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background: #2f2f2f; /* Dark grey background */
+            color: #e0e0e0; /* Light grey text */
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Navbar Styling */
+        .navbar {
+            background-color: #333 !important; /* Dark grey navbar */
+            padding: 10px 15px;
+        }
+
+        .navbar a.nav-link {
+            font-size: 18px;
+            color: #e0e0e0 !important; /* Light grey text */
+            font-weight: bold;
+            margin-right: 20px;
+        }
+
+        .navbar a.nav-link:hover {
+            color: #fff !important; /* White on hover */
+        }
+
+        .navbar img {
+            border-radius: 10px;
+        }
+
+        .navbar-brand {
+            font-size: 24px;
+            color: #e0e0e0;
+            font-weight: bold;
+            margin-left: 15px;
+        }
+
+        .navbar-brand:hover {
+            color: #fff;
+        }
+
+        /* Main Content */
+        main {
+            padding-top: 70px;
+        }
+
+        .container-fluid {
+            background: #444; /* Slightly lighter grey */
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.3); /* Darker shadow */
+        }
+
+        /* Footer */
+        footer {
+            background-color: #333;
+            padding: 20px 0;
+            color: #e0e0e0;
+            text-align: center;
+        }
+
+        footer a {
+            color: #e0e0e0;
+            margin: 0 10px;
+            font-size: 20px;
+        }
+
+        footer a:hover {
+            color: #fff;
+        }
+
+        /* Medical Icons */
+        .nav-item .fa {
+            margin-right: 8px;
+        }
+
+        .nav-link:hover .fa {
+            color: #fff;
+        }
+
+        /* Button Styling */
+        .btn-primary {
+            background-color: #555; /* Medium grey button */
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn-primary:hover {
+            background-color: #666; /* Slightly lighter grey */
+        }
+
+        /* Hover Effect for Card Content */
+        .card:hover {
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4); /* Darker shadow */
+            transition: box-shadow 0.3s ease-in-out;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+        <a href="{{ url_for('home') }}" class="navbar-brand">
+            <img src="{{ url_for('static', filename='logo.png') }}" height="50px" width="50px" alt="Diagno Vision Logo">
+            Diagno Vision
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="{{ url_for('home') }}"><i class="fa fa-home"></i> Home</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="{{ url_for('diabetesPage') }}"><i class="fa fa-heartbeat"></i> Diabetes</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="{{ url_for('cancerPage') }}"><i class="fa fa-female"></i> Breast Cancer</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="{{ url_for('kidneyPage') }}"><i class="fa fa-tint"></i> Kidney</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="{{ url_for('heartPage') }}"><i class="fa fa-stethoscope"></i> Heart</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="{{ url_for('liverPage') }}"><i class="fa fa-medkit"></i> Liver</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="{{ url_for('malariaPage') }}"><i class="fa fa-bug"></i> Malaria</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="{{ url_for('pneumoniaPage') }}"><i class="fa fa-lungs"></i> Pneumonia</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main>
+        <div class="container-fluid">
+            {% block content %}
+            {% endblock %}
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Medical Diagnosis | Designed by DiagnoVision</p>
+            <a href="https://twitter.com/" target="_blank"><i class="fa fa-twitter"></i></a>
+            <a href="https://facebook.com/" target="_blank"><i class="fa fa-facebook"></i></a>
+            <a href="mailto:support@mlwebapp.com"><i class="fa fa-envelope"></i></a>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+</body>
+</html>

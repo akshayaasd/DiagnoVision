@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cancer Diagnosis</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #121212; /* Dark background */
+            color: #e0e0e0; /* Light text color */
+            margin: 0;
+            padding: 0;
+        }
+        h2 {
+            color: #ffffff; /* White color for headings */
+            text-align: center;
+            padding: 20px;
+        }
+        div {
+            max-width: 600px;
+            margin: auto;
+            padding: 20px;
+            background-color: #1e1e1e; /* Slightly lighter dark background for content */
+            border-radius: 8px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5); /* Dark shadow */
+        }
+        input[type="text"] {
+            width: calc(100% - 22px);
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #333;
+            border-radius: 4px;
+            background-color: #333; /* Dark input field background */
+            color: #e0e0e0; /* Light text color in input fields */
+        }
+        button {
+            background-color: #444; /* Dark button background */
+            border: none;
+            padding: 10px 20px;
+            color: #e0e0e0; /* Light text color on button */
+            font-size: 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #555; /* Slightly lighter dark color on hover */
+        }
+        h3 {
+            color: #ff5722; /* Bright color for result text */
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+<div>
+    <h2>Cancer Diagnosis</h2>
+    <form method="POST">
+        <!-- Input fields according to your dataset -->
+        <input type="text" name="feature1" placeholder="Radius Mean" required>
+        <input type="text" name="feature2" placeholder="Texture Mean" required>
+        <!-- More fields based on the number of features -->
+        <button type="submit">Submit</button>
+    </form>
+
+    <!-- Display result -->
+    {% if prediction_text %}
+    <div>
+        <h3>{{ prediction_text }}</h3>
+    </div>
+    {% endif %}
+</div>
+
+</body>
+</html>
