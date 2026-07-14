@@ -1,12 +1,12 @@
 {% extends 'main.html' %}
 {% block content %}
-    <div class="row"  style="margin-bottom: 477px;">
+    <div class="row">
         <div class="col-md-3"></div>
         <div class="col-md-6">
             {% if pred == 1 %}
-                <div class="card card-body alert alert-danger"><center>Sorry! Please consult DOCTOR.</center></div>
+                <div class="card card-body alert alert-danger"><div class="text-center mb-4">Sorry! Please consult DOCTOR.</div></div>
             {% else %}
-                <div class="card card-body alert alert-success"><center>Great! You are HEALTHY.</center></div>
+                <div class="card card-body alert alert-success"><div class="text-center mb-4">Great! You are HEALTHY.</div></div>
             {% endif %}
             <div class="row">
                 <div class="col-md-4"></div>

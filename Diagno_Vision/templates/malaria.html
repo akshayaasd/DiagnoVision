@@ -22,22 +22,22 @@
     <div class="alert alert-danger">{{ message }}</div>
 {% endif %}
 
-<div class="row" style="margin-bottom: 300px;">
+<div class="row">
     <div class="col-md-3"></div>
     <div class="col-md-6">
-        <center><h1 style="color: #ffffff;">Malaria Predictor</h1></center>
-        <div class="card card-body" style="border: 1px solid #444; background-color: #1e1e1e; color: #e0e0e0;">
-            <center><h3>Please upload the image of the cell</h3></center>
+        <div class="text-center mb-4"><h1 class="mb-4">Malaria Predictor</h1></div>
+        <div class="card card-body">
+            <div class="text-center mb-4"><h3>Please upload the image of the cell</h3></div>
             <form class="form-horizontal" action="{{ url_for('malariapredictPage') }}" method="POST" enctype="multipart/form-data">
-                <center>
-                    <input onchange="readURL(this);" type="file" name="image" style="border: 1px solid #444; background-color: #333; color: #e0e0e0;" placeholder="Upload Image">
+                <div class="text-center mb-4">
+                    <input onchange="readURL(this);" type="file" name="image" placeholder="Upload Image">
                     <br>
                     <br>
-                    <img class="img-fluid" id="blah" src="#" alt="UPLOADED IMAGE WILL APPEAR HERE" style="max-width: 100%; height: auto;" />
+                    <img class="img-fluid" id="blah" src="#" alt="UPLOADED IMAGE WILL APPEAR HERE" />
                     <br>
                     <br>
-                    <input class="btn btn-info" type="submit" style="background-color: #444; border: 1px solid #555; color: #e0e0e0;" value="Submit">
-                </center>
+                    <input class="btn btn-primary" type="submit" value="Submit">
+                </div>
             </form>
         </div>
     </div>

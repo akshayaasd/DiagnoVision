@@ -4,111 +4,182 @@
     <meta charset="UTF-8">
     <meta name="Keywords" content="Flask, Machine Learning, Deep Learning, Artificial Intelligence, AI, ML,DL, Web Development">
     <meta name="description" content="A Machine Learning and Deep Learning based webapp for Multiple Disease Prediction.">
-    <title>Medical Diagnosis</title>
+    <title>DiagnoVision | Medical Diagnosis</title>
     <link rel="icon" href="{{ url_for('static', filename='logo.png') }}" type="image/icon">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
-    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
     <link rel="canonical" href="https://getbootstrap.com/docs/4.0/examples/sticky-footer/">
 
     <style>
+        :root {
+            --bg: #0B0B12;
+            --surface: #14141F;
+            --surface-2: #191926;
+            --border: #262638;
+            --text: #EDEDF4;
+            --text-muted: #9A9AB0;
+            --accent: #6366F1;
+            --accent-2: #A78BFA;
+            --accent-soft: rgba(99,102,241,0.14);
+            --body: 'Inter', sans-serif;
+            --display: 'Space Grotesk', sans-serif;
+        }
+
         body {
-            font-family: 'Roboto', sans-serif;
-            background: #2f2f2f; /* Dark grey background */
-            color: #e0e0e0; /* Light grey text */
+            font-family: var(--body);
+            background: var(--bg);
+            color: var(--text);
             margin: 0;
             padding: 0;
+            line-height: 1.6;
+        }
+
+        body::before {
+            content:''; position:fixed; inset:0;
+            background: radial-gradient(ellipse 900px 500px at 15% -5%, rgba(99,102,241,0.10), transparent 60%),
+                        radial-gradient(ellipse 700px 500px at 90% 10%, rgba(167,139,250,0.07), transparent 60%);
+            pointer-events:none; z-index:-1;
         }
 
         /* Navbar Styling */
         .navbar {
-            background-color: #333 !important; /* Dark grey navbar */
-            padding: 10px 15px;
+            background: rgba(11, 11, 18, 0.75) !important;
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border);
+            padding: 15px 30px;
+        }
+        
+        .navbar-brand {
+            font-family: var(--display);
+            font-size: 22px;
+            font-weight: 700;
+            color: var(--text) !important;
         }
 
         .navbar a.nav-link {
-            font-size: 18px;
-            color: #e0e0e0 !important; /* Light grey text */
-            font-weight: bold;
-            margin-right: 20px;
+            font-size: 15px;
+            color: var(--text-muted) !important;
+            font-weight: 500;
+            margin-right: 15px;
+            transition: color 0.2s ease;
         }
 
         .navbar a.nav-link:hover {
-            color: #fff !important; /* White on hover */
+            color: var(--text) !important;
+        }
+        
+        .nav-item.active .nav-link {
+            color: var(--text) !important;
         }
 
         .navbar img {
-            border-radius: 10px;
-        }
-
-        .navbar-brand {
-            font-size: 24px;
-            color: #e0e0e0;
-            font-weight: bold;
-            margin-left: 15px;
-        }
-
-        .navbar-brand:hover {
-            color: #fff;
+            border-radius: 8px;
+            margin-right: 10px;
         }
 
         /* Main Content */
         main {
-            padding-top: 70px;
+            padding-top: 100px;
+            min-height: calc(100vh - 80px);
         }
-
-        .container-fluid {
-            background: #444; /* Slightly lighter grey */
-            padding: 30px;
-            border-radius: 15px;
-            box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.3); /* Darker shadow */
+        
+        h1, h2, h3, h4, h5, h6 {
+            font-family: var(--display);
+            font-weight: 600;
         }
 
         /* Footer */
         footer {
-            background-color: #333;
-            padding: 20px 0;
-            color: #e0e0e0;
+            background-color: var(--surface);
+            padding: 30px 0;
+            color: var(--text-muted);
             text-align: center;
+            border-top: 1px solid var(--border);
+            margin-top: 50px;
         }
 
-        footer a {
-            color: #e0e0e0;
+        footer .social-icon {
+            color: var(--text-muted);
             margin: 0 10px;
             font-size: 20px;
+            transition: color 0.2s;
+            cursor: default;
+            display: inline-block;
         }
 
-        footer a:hover {
-            color: #fff;
+        footer .social-icon:hover {
+            color: var(--accent-2);
         }
 
         /* Medical Icons */
         .nav-item .fa {
-            margin-right: 8px;
-        }
-
-        .nav-link:hover .fa {
-            color: #fff;
+            margin-right: 6px;
+            color: var(--accent);
         }
 
         /* Button Styling */
-        .btn-primary {
-            background-color: #555; /* Medium grey button */
+        .btn-primary, .btn-success {
+            background: linear-gradient(100deg, var(--accent), var(--accent-2));
             border: none;
-            padding: 10px 20px;
-            font-size: 16px;
-            font-weight: bold;
-            transition: background-color 0.3s ease;
+            color: #0B0B12;
+            padding: 12px 24px;
+            font-size: 15px;
+            font-weight: 600;
+            border-radius: 8px;
+            transition: transform 0.15s ease, box-shadow 0.15s ease;
         }
 
-        .btn-primary:hover {
-            background-color: #666; /* Slightly lighter grey */
+        .btn-primary:hover, .btn-success:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 8px 24px rgba(99,102,241,0.35);
+            background: linear-gradient(100deg, var(--accent), var(--accent-2));
+            color: #0B0B12;
         }
-
-        /* Hover Effect for Card Content */
+        
+        .card {
+            background-color: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            color: var(--text);
+        }
+        
         .card:hover {
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4); /* Darker shadow */
-            transition: box-shadow 0.3s ease-in-out;
+            transform: translateY(-4px);
+            box-shadow: 0 12px 24px rgba(0,0,0,0.2);
+            border-color: var(--accent-soft);
+        }
+        
+        input.form-control, select.form-control, .custom-file-label {
+            background-color: var(--surface-2);
+            border: 1px solid var(--border);
+            color: var(--text);
+            border-radius: 8px;
+        }
+        
+        input.form-control:focus, select.form-control:focus {
+            background-color: var(--surface-2);
+            border-color: var(--accent);
+            color: var(--text);
+            box-shadow: 0 0 0 3px var(--accent-soft);
+        }
+        
+        label {
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+        
+        /* Form Containers */
+        .form-container {
+            background: var(--surface);
+            padding: 40px;
+            border-radius: 16px;
+            border: 1px solid var(--border);
+            margin-bottom: 40px;
         }
     </style>
 </head>
@@ -117,8 +188,8 @@
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
         <a href="{{ url_for('home') }}" class="navbar-brand">
-            <img src="{{ url_for('static', filename='logo.png') }}" height="50px" width="50px" alt="Diagno Vision Logo">
-            Diagno Vision
+            <img src="{{ url_for('static', filename='logo.png') }}" height="40px" width="40px" alt="Diagno Vision Logo">
+            DiagnoVision
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -155,7 +226,7 @@
 
     <!-- Main Content -->
     <main>
-        <div class="container-fluid">
+        <div class="container">
             {% block content %}
             {% endblock %}
         </div>
@@ -164,10 +235,10 @@
     <!-- Footer -->
     <footer>
         <div class="container">
-            <p>&copy; 2024 Medical Diagnosis | Designed by DiagnoVision</p>
-            <a href="https://twitter.com/" target="_blank"><i class="fa fa-twitter"></i></a>
-            <a href="https://facebook.com/" target="_blank"><i class="fa fa-facebook"></i></a>
-            <a href="mailto:support@mlwebapp.com"><i class="fa fa-envelope"></i></a>
+            <p>&copy; 2024 DiagnoVision | AI-Powered Medical Diagnosis</p>
+            <span class="social-icon"><i class="fa fa-twitter"></i></span>
+            <span class="social-icon"><i class="fa fa-facebook"></i></span>
+            <span class="social-icon"><i class="fa fa-envelope"></i></span>
         </div>
     </footer>
 
