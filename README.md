@@ -1,7 +1,5 @@
 # DiagnoVision
 
-![DiagnoVision Banner](https://via.placeholder.com/1200x300?text=DiagnoVision)
-
 [![Python](https://img.shields.io/badge/Python-3.7+-blue.svg)](https://www.python.org/)
 [![Flask](https://img.shields.io/badge/Flask-Framework-green.svg)](https://flask.palletsprojects.com/)
 [![TensorFlow](https://img.shields.io/badge/TensorFlow-DL-orange.svg)](https://www.tensorflow.org/)
