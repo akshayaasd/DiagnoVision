@@ -3,12 +3,20 @@ import pickle
 import numpy as np
 from PIL import Image
 import logging
+import os
+from werkzeug.utils import secure_filename
 from tensorflow.keras.models import load_model
 
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 logger = logging.getLogger(__name__)
 
 app = Flask(__name__)
+
+# Security settings for file uploads
+ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg'}
+
+def allowed_file(filename):
+    return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
 # Cache models
 models = {}
@@ -84,7 +92,16 @@ def predictPage():
             if not to_predict_dict:
                 raise ValueError("No data provided.")
                 
-            to_predict_list = list(map(float, list(to_predict_dict.values())))
+            # Safely parse float values
+            to_predict_list = []
+            for key, val in to_predict_dict.items():
+                if not str(val).strip():
+                    raise ValueError(f"Missing value for {key}")
+                try:
+                    to_predict_list.append(float(val))
+                except ValueError:
+                    raise ValueError(f"Invalid number entered for {key}: '{val}'")
+                    
             pred = predict(to_predict_list, to_predict_dict)
             return render_template('predict.html', pred=pred)
         except Exception as e:
@@ -103,6 +120,9 @@ def malariapredictPage():
             file = request.files['image']
             if file.filename == '':
                 raise ValueError("No file selected.")
+            
+            if not allowed_file(file.filename):
+                raise ValueError("Invalid file type. Only PNG, JPG, JPEG are allowed.")
                 
             img = Image.open(file)
             img = img.resize((36,36))
@@ -129,6 +149,9 @@ def pneumoniapredictPage():
             file = request.files['image']
             if file.filename == '':
                 raise ValueError("No file selected.")
+                
+            if not allowed_file(file.filename):
+                raise ValueError("Invalid file type. Only PNG, JPG, JPEG are allowed.")
                 
             img = Image.open(file).convert('L')
             img = img.resize((36,36))
